@@ -36,4 +36,4 @@ Shelton AO, Hunsicker ME, Ward EJ, Feist BE, Blake R, Ward CL, et al. Spatio-tem
 von Szalay PG, Raring NW. Data report: 2015 Gulf of Alaska bottom trawl survey. Seattle (WA): National Oceanic and Atmospheric Administration; 2016. Technical Memorandum: NMFS-AFSC-325. Sponsored by the US Department of Commerce.
 
 # Acknowledgments
-Our gratitude goes to Wayne Palsson and Kirstin Holsman for querying data and providing guidance regarding the use of AFSC databases. We also appreciate analytical recommendations provided by Franz Mueter and Jordan Watson.
+Wayne Palsson and Kirstin Holsman queried and provided guidance regarding the use of AFSC databases. Analytical recommendations from Franz Mueter and Jordan Watson were incorporated throughout.
