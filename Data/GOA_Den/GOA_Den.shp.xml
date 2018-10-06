@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en">
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>International Pacific Halibut Commission.</origin>
+				<pubdate>November 01, 2004</pubdate>
+				<title Sync="TRUE">GOA_Den</title>
+				<edition>1</edition>
+				<geoform Sync="TRUE">vector digital data</geoform>
+				<ftname Sync="TRUE">GOA_Den</ftname><onlink Sync="TRUE">\\ALPINE\c\temp\2004_12_17\GOA_Den.shp</onlink></citeinfo>
+		</citation>
+		<descript>
+			<abstract>International Pacific Halibut Commission (IPHC) statistical areas (stat areas) for California, Oregon, Washington, British Columbia (Canada) and Alaska.</abstract>
+			<purpose>The IPHC uses the statistical areas to aggregate commercial and research catch data.</purpose>
+			<supplinf>(1) These digitized statistical areas are polygons.  Most vertices coincide with the historical IPHC areas. For accurate digitization, additional vertices were inserted by referring to NOAA (National Oceanic and Atmospheric Administration) and CHS (Canadian Hydrographc Survey) Mercator projected charts.  
+(2) Nodes (i.e. intermediate points between vertices) were computed using the ArcView 3.2 ReturnDensified method with a 500-meter step-size.  
+(3) Statistical Area 450 crosses the 180 degree meridian and was therefore split into Eastern and Western hemisphere polygons, but is considered to be a single area.
+(5) Additional information concerning the IPHC statistical areas can be found in IPHC Technical Report No. 49 (ISBN: 0579-3920).</supplinf>
+			<langdata Sync="TRUE">en</langdata></descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate>
+					<caldate>November 1, 2004</caldate>
+				</sngdate>
+			</timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>As needed</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc Sync="TRUE">-179.999999</westbc>
+				<eastbc Sync="TRUE">179.999999</eastbc>
+				<northbc Sync="TRUE">61.500000</northbc>
+				<southbc Sync="TRUE">37.000000</southbc>
+			</bounding>
+			<lboundng><leftbc Sync="TRUE">-179.999999</leftbc><rightbc Sync="TRUE">179.999999</rightbc><bottombc Sync="TRUE">37.000000</bottombc><topbc Sync="TRUE">61.500000</topbc></lboundng></spdom>
+		<keywords>
+			<place>
+				<placekey>California,Oregon,  Washington, Alaska, British Columbia</placekey>
+			</place>
+			<theme><themekey>statistical area</themekey><themekey>stat area</themekey><themekey>International Pacific Halibut Commission</themekey><themekey>IPHC</themekey></theme></keywords>
+		<accconst>These shapefiles are freely available to the public.</accconst>
+		<useconst>While defined and created in the Mercator projection, the addition of densely spaced intermediate  points (at approximately 500-meter intervals), followed by unprojecting, allows the shapefiles to be used in any projection.  
+These shapefiles have no legal or official status.</useconst>
+		<ptcontac>
+			<cntinfo>
+				<cntperp>
+					<cntper>Thomas Kong</cntper>
+					<cntorg>International Pacific Halibut Commission</cntorg>
+				</cntperp>
+				<cntpos>Biologist</cntpos>
+				<cntaddr>
+					<addrtype>mailing address</addrtype>
+					<address>P.O. Box 95009</address>
+					<city>Seattle</city>
+					<state>Washington</state>
+					<postal>98145-2009</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>(206) 634-1838 ext. 232</cntvoice>
+				<cntemail>Tom(AT)iphc.washington.edu</cntemail>
+				<cntinst>Email is the preferred contact method.</cntinst></cntinfo>
+		</ptcontac>
+		<datacred>Richard Leickly did the GIS work; Thomas Kong supplied the vertices and provided supporting information.</datacred>
+		<secinfo>
+			<secclass>Unclassified</secclass>
+		</secinfo>
+		<native Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.0.0.535</native>
+		<natvform Sync="TRUE">Shapefile</natvform></idinfo>
+	<spdoinfo>
+		<direct Sync="TRUE">Vector</direct>
+		<ptvctinf>
+			<sdtsterm Name="GOA_Den">
+				<sdtstype Sync="TRUE">G-polygon</sdtstype>
+				<ptvctcnt Sync="TRUE">97</ptvctcnt>
+			</sdtsterm>
+			<esriterm Name="GOA_Den"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom Sync="TRUE">Polygon</efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">97</efeacnt><spindex Sync="TRUE">TRUE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<geograph>
+				<latres>0.01</latres>
+				<longres>0.01</longres>
+				<geogunit Sync="TRUE">Decimal degrees</geogunit>
+			</geograph>
+			<geodetic>
+				<horizdn Sync="TRUE">North American Datum of 1983</horizdn>
+				<ellips Sync="TRUE">Geodetic Reference System 80</ellips>
+				<semiaxis Sync="TRUE">6378137.000000</semiaxis>
+				<denflat Sync="TRUE">298.257222</denflat>
+			</geodetic>
+			<cordsysn><geogcsn Sync="TRUE">GCS_Assumed_Geographic_1</geogcsn></cordsysn></horizsys>
+	</spref>
+	<eainfo>
+		<detailed Name="GOA_Den">
+			<enttyp>
+				<enttypl Sync="TRUE">GOA_Den</enttypl>
+				<enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">97</enttypc></enttyp>
+			<attr>
+				<attrlabl Sync="TRUE">FID</attrlabl>
+				<attrdef Sync="TRUE">Internal feature number.</attrdef>
+				<attrdefs Sync="TRUE">ESRI</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl Sync="TRUE">Shape</attrlabl>
+				<attrdef Sync="TRUE">Feature geometry.</attrdef>
+				<attrdefs Sync="TRUE">ESRI</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Coordinates defining the features.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">Shape</attalias><attrtype Sync="TRUE">Geometry</attrtype><attwidth Sync="TRUE">0</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl Sync="TRUE">STAT_AREA</attrlabl>
+				<attalias Sync="TRUE">STAT_AREA</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">6</attwidth><attrdef>Name of the statistical area</attrdef></attr>
+			<attr>
+				<attrlabl Sync="TRUE">HEMI</attrlabl>
+				<attalias Sync="TRUE">HEMI</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><attrdef>Hemisphere of the statistical area</attrdef><attrdomv><edom><edomv>E</edomv><edomvd>Eastern hemisphere</edomvd></edom><edom><edomv>W</edomv><edomvd>Western hemisphere</edomvd></edom></attrdomv></attr>
+			<attr>
+				<attrlabl Sync="TRUE">STATUS</attrlabl>
+				<attalias Sync="TRUE">STATUS</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">6</attwidth><attrdef>Whether the statistical area is open, or closed to commercial fishing</attrdef><attrdomv><edom><edomv>Open</edomv><edomvd>statistical area is open to commercial fishing</edomvd></edom><edom><edomv>Closed</edomv><edomvd>statistical area is closed to commercial fishing</edomvd></edom></attrdomv></attr>
+			<attr>
+				<attrlabl Sync="TRUE">TYPE</attrlabl>
+				<attalias Sync="TRUE">TYPE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">3</attwidth><attrdef>Whether the statistical area is a GOA (Gulf of Alaska) or a Bering Sea (BS) statistical area</attrdef><attrdomv><edom><edomv>GOA</edomv><edomvd>Gulf of Alaksa</edomvd></edom></attrdomv></attr>
+			<attr>
+				<attrlabl Sync="TRUE">REGION</attrlabl>
+				<attalias Sync="TRUE">REGION</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">8</attwidth><attrdef>Same as Reg_Area, but indicates the hemisphere, where appropriate.</attrdef></attr>
+			<attr><attrlabl Sync="TRUE">REG_AREA</attrlabl><attalias Sync="TRUE">REG_AREA</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">8</attwidth><attrdef>Regulatory Area in which the statistical area is located</attrdef></attr><attr><attrlabl Sync="TRUE">STAT_NUM</attrlabl><attalias Sync="TRUE">STAT_NUM</attalias><attrtype Sync="TRUE">Number</attrtype><attwidth Sync="TRUE">8</attwidth><attrdef>A numeric version of Stat_Area</attrdef></attr></detailed>
+	</eainfo>
+	<distinfo>
+		<distrib>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>International Pacific Halibut Commission</cntorg>
+				</cntorgp>
+				<cntvoice>(206) 634-1838</cntvoice><cntfax>(206) 632-2983</cntfax></cntinfo>
+		</distrib>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<transize Sync="TRUE">2.429</transize>
+					<dssize Sync="TRUE">2.429</dssize></digtinfo>
+			</digform>
+		</stdorder>
+		<resdesc Sync="TRUE">Downloadable Data</resdesc></distinfo>
+	<metainfo>
+		<metd Sync="TRUE">20041217</metd>
+		<metc>
+			<cntinfo>
+				<cntpos>Scientific Programmer</cntpos>
+				<cntaddr>
+					<addrtype>mailing address</addrtype>
+					<city>Seattle</city>
+					<state>WA</state>
+					<postal>98145-2009</postal>
+					<country>USA</country><address>P.O. Box 95009</address></cntaddr>
+				<cntvoice>(206) 634-1838 ext. 221</cntvoice>
+				<cntinst>Email is the preferred  contact method.</cntinst><cntemail>Richard(AT)iphc.washington.edu</cntemail><cntperp><cntper>Richard Leickly</cntper><cntorg>International Pacific Halibut Commission</cntorg></cntperp></cntinfo>
+		</metc>
+		<metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+		<mettc Sync="TRUE">local time</mettc>
+		<langmeta Sync="TRUE">en</langmeta><metextns><onlink Sync="TRUE">http://www.esri.com/metadata/esriprof80.html</onlink><metprof Sync="TRUE">ESRI Metadata Profile</metprof></metextns></metainfo>
+	<Esri><MetaID>{4DA177E8-538C-49FB-B5B7-6B44672B6287}</MetaID><CreaDate>20041101</CreaDate><CreaTime>12202600</CreaTime><SyncOnce>FALSE</SyncOnce><SyncDate>20041217</SyncDate><SyncTime>14194800</SyncTime><ModDate>20041217</ModDate><ModTime>14194800</ModTime></Esri><dataqual><posacc><horizpa><horizpar>These data should be considered to be accurate to 0.01 degree.</horizpar></horizpa></posacc><lineage><srcinfo><srcscale>Many charts ranging  from 200,000 to 1,000,000</srcscale><typesrc>NOAA (USA) and CHS (Canada) Mercator projected nautical charts</typesrc></srcinfo></lineage></dataqual><dataIdInfo><envirDesc Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.0.0.535</envirDesc><dataLang><languageCode Sync="TRUE" value="en"></languageCode></dataLang><idCitation><resTitle Sync="TRUE">GOA_Den</resTitle><presForm><PresFormCd Sync="TRUE" value="005"></PresFormCd></presForm></idCitation><spatRpType><SpatRepTypCd Sync="TRUE" value="001"></SpatRepTypCd></spatRpType><dataExt><geoEle><GeoBndBox esriExtentType="native"><westBL Sync="TRUE">-179.999999</westBL><eastBL Sync="TRUE">179.999999</eastBL><northBL Sync="TRUE">61.5</northBL><southBL Sync="TRUE">37</southBL><exTypeCode Sync="TRUE">1</exTypeCode></GeoBndBox></geoEle></dataExt><geoBox esriExtentType="decdegrees"><westBL Sync="TRUE">-179.999999</westBL><eastBL Sync="TRUE">179.999999</eastBL><northBL Sync="TRUE">61.5</northBL><southBL Sync="TRUE">37</southBL><exTypeCode Sync="TRUE">1</exTypeCode></geoBox></dataIdInfo><mdLang><languageCode Sync="TRUE" value="en"></languageCode></mdLang><mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName><mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer><mdChar><CharSetCd Sync="TRUE" value="004"></CharSetCd></mdChar><mdHrLv><ScopeCd Sync="TRUE" value="005"></ScopeCd></mdHrLv><mdHrLvName Sync="TRUE">dataset</mdHrLvName><distInfo><distributor><distorTran><onLineSrc><orDesc Sync="TRUE">002</orDesc><linkage Sync="TRUE">file://\\ALPINE\c\temp\2004_12_17\GOA_Den.shp</linkage><protocol Sync="TRUE">Local Area Network</protocol></onLineSrc><transSize Sync="TRUE">2.429</transSize></distorTran><distorFormat><formatName Sync="TRUE">Shapefile</formatName></distorFormat></distributor></distInfo><refSysInfo><RefSystem><refSysID><identCode Sync="TRUE">GCS_Assumed_Geographic_1</identCode></refSysID></RefSystem></refSysInfo><spatRepInfo><VectSpatRep><topLvl><TopoLevCd Sync="TRUE" value="001"></TopoLevCd></topLvl><geometObjs Name="GOA_Den"><geoObjTyp><GeoObjTypCd Sync="TRUE" value="001"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">97</geoObjCnt></geometObjs></VectSpatRep></spatRepInfo><mdDateSt Sync="TRUE">20041217</mdDateSt></metadata>
