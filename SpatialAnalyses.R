@@ -645,10 +645,6 @@ PHpredictionsGAM$PHstdAbun = PHpredictionsGAM$PHpredAbun/max(PHpredictionsGAM$PH
 ATFpa_predictGAM = predict.gam(ATF.pa.gam_best, newdata=HaulCentEnviroData, type="response", se.fit=TRUE)
 ATFpa_predGAM = cbind(HaulCentEnviroData, ATFpa_predictGAM)
 
-### Predict Presence-Absence, ARROWTOOTH FLOUNDER ###
-ATFpa_predictGAM = predict.gam(ATF.pa.gam_best, newdata=HaulCentEnviroData, type="response", se.fit=TRUE)
-ATFpa_predGAM = cbind(HaulCentEnviroData, ATFpa_predictGAM)
-
 # Calculate 95% confidence intervals:
 ATFpa_pred_CIgam = within(ATFpa_predGAM, {
   lower = fit-1.96*se.fit
