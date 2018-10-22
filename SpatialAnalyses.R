@@ -149,12 +149,6 @@ lonmax = -130
 latmin = 52
 latmax = 62
 
-# Set coordinate boundaries for plotting:
-lonmin = -172
-lonmax = -130
-latmin = 52
-latmax = 62
-
 # Ensure that the same tows are included in each model by removing those with incomplete environmental data (i.e., rows with missing depths or bottom temperatures):
 trawl_comp = subset(trawl_wide_30_69, !is.na(GEAR_DEPTH))
 trawl_comp = subset(trawl_comp, !is.na(GEAR_TEMPERATURE))
