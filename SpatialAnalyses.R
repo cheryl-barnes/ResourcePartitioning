@@ -19,11 +19,7 @@ graphics.off()
 
 setwd("~/Documents/UAF/Dissertation/GitHub/ResourcePartitioning/")
 ################################################################
-<<<<<<< HEAD
 ### INITIAL DATA PREPARATION ###
-=======
-### DATA PREPARATION ###
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ################################################################
 # Prepare and format AFSC bottom trawl survey data:
 # These data include all survey tows conducted between 1984 and 2017, including those with and without our species of interest.
@@ -60,11 +56,7 @@ trawl_wide = dcast(trawl, YEAR + HAULJOIN + VESSEL + CRUISE + Haul_Join + STRATU
 # Remove other species (i.e., PC, SBL, and WEP) from data frame:
 trawl_wide = trawl_wide[,1:16]
 ################################################################
-<<<<<<< HEAD
 ### ADJUST HAUL-SPECIFIC CPUE TO MATCH SIZE CLASS OF INTEREST ###
-=======
-### ADJUST HAUL-SPECIFIC CPUE ###
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ################################################################
 # Adjust haul-specific CPUE estimates (number per hectare) to reflect species-specific proportions of fish measuring within the size class of interest (30 to 69 cm fork length). Note: 100 to 200 fish were subsampled for length measurements per haul. Length data were provided by the RACE Division, Alaska Fisheries Science Center (NMFS, NOAA) upon request. We reduced the size of the following CSV file to meet size limitations imposed by GitHub (i.e., unnecessary columns were removed prior to import).
 lengths = read.csv("Data/race_length_by_haul_PH_ATFred.csv", header=T)
@@ -150,24 +142,23 @@ require(mapdata)
 require(visreg)
 require(ggplot2)
 require(PBSmapping)
-<<<<<<< HEAD
 
 # Set coordinate boundaries for plotting:
 lonmin = -172
 lonmax = -130
 latmin = 52
 latmax = 62
-=======
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
+
+# Set coordinate boundaries for plotting:
+lonmin = -172
+lonmax = -130
+latmin = 52
+latmax = 62
 
 # Ensure that the same tows are included in each model by removing those with incomplete environmental data (i.e., rows with missing depths or bottom temperatures):
 trawl_comp = subset(trawl_wide_30_69, !is.na(GEAR_DEPTH))
 trawl_comp = subset(trawl_comp, !is.na(GEAR_TEMPERATURE))
-
-<<<<<<< HEAD
 ################################################################
-=======
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ### Model presence-absence (P/A) for Pacific Halibut ###
 
 # Label each haul as being present or absent for P. Halibut:
@@ -188,19 +179,13 @@ summary(PH.pa.gam_select)
 # The full model = the best-fit model.
 PH.pa.gam_best = PH.pa.gam_full 
 summary(PH.pa.gam_best)
-<<<<<<< HEAD
 
 ### Plot P/A results, Pacific Halibut ###
-=======
-
-### Plot P/A results, Pacific Halibut ###
-
 # Set coordinate boundaries for plotting:
 lonmin = -172
 lonmax = -130
 latmin = 52
 latmax = 62
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 
 # Plot the partial effect of latxlon on P/A of P. Halibut:
 data(worldHiresMapEnv) # source world data for plot
@@ -257,13 +242,7 @@ visreg(PH.pa.gam_best, xvar="GEAR_TEMPERATURE",  fill=list(col="gray", alpha=0.2
   scale_x_continuous(expand=c(0,0), limits=c(0,13.5), breaks=c(0,3,6,9,12)) +
   scale_y_continuous(limits=c(0,1), breaks=c(0,0.25, 0.50, 0.75, 1)) +
   geom_rug(sides="b", alpha=0.2, size=0.5, position="jitter")
-<<<<<<< HEAD
 ################################################################
-=======
-
-
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ### Model CPUE (where present) for Pacific Halibut ###
 
 # Subset hauls to include only those that caught P. Halibut:
@@ -285,10 +264,6 @@ summary(PH.cpue.gam_select)
 PH.cpue.gam_best = PH.cpue.gam_full
 summary(PH.cpue.gam_best)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Plot the partial effect of latxlon on CPUE of P. Halibut:
 vis.gam(PH.cpue.gam_best, c("START_LONGITUDE", "START_LATITUDE"), plot.type = "contour", type="response", contour.col="black", color="heat", xlab="Longitude", ylab="Latitude", main="Pacific Halibut, Partial Effect on log-CPUE (number per hectare)", too.far=0.025, n.grid=500, xlim=c(lonmin, lonmax), ylim=c(latmin, latmax))
 maps::map('worldHires', fill=T, add=T, col="lightgrey")
@@ -344,23 +319,11 @@ visreg(PH.cpue.gam_best, xvar="GEAR_TEMPERATURE",  fill=list(col="gray", alpha=0
   labs(x=expression(paste("Bottom Temperature (",degree,"C)")), y="Partial Effect on log-CPUE (number per hectare)") +
   theme(legend.background = element_rect(fill="transparent")) +
   geom_rug(sides="b", alpha=0.2, size=0.5, position="jitter")
-
-<<<<<<< HEAD
 ################################################################
 ### Model presence-absence (P/A) for Arrowtooth Flounder ###
-
 # Label each haul as being present or absent for Arrowtooth:
 trawl_comp$ATFpa = as.numeric(trawl_comp$adjCPUE_ATF > 0)
 
-=======
-
-
-### Model presence-absence (P/A) for Arrowtooth Flounder ###
-
-# Label each haul as being present or absent for Arrowtooth:
-trawl_comp$ATFpa = as.numeric(trawl_comp$adjCPUE_ATF > 0)
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Run the full (global) model:
 ATF.pa.gam_full = gam(ATFpa ~ YEAR + s(START_LONGITUDE, START_LATITUDE) + s(GEAR_DEPTH) + s(GEAR_TEMPERATURE, k=4), data = trawl_comp, family = binomial(link=logit), method="GCV.Cp")
 summary(ATF.pa.gam_full)
@@ -374,10 +337,6 @@ summary(ATF.pa.gam_select)
 ATF.pa.gam_best = ATF.pa.gam_full
 summary(ATF.pa.gam_best)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Plot the partial effect of latxlon on P/A of Arrowtooth Flounder:
 vis.gam(ATF.pa.gam_best, c("START_LONGITUDE", "START_LATITUDE"), plot.type = "contour", type="response", contour.col="black", color="heat", xlab="Longitude", ylab="Latitude", main="Arrowtooth Flounder, Partial Effect on Presence or Absence", too.far=0.025, n.grid=500, xlim=c(lonmin, lonmax), ylim=c(latmin, latmax))
 maps::map('worldHires', fill=T, xlim=c(lonmin, lonmax), ylim=c(latmin, latmax), add=T, col="lightgrey")
@@ -432,14 +391,7 @@ visreg(ATF.pa.gam_best, xvar="GEAR_TEMPERATURE",  fill=list(col="gray", alpha=0.
   scale_x_continuous(expand=c(0,0), limits=c(0,13.5), breaks=c(0,3,6,9,12)) +
   scale_y_continuous(limits=c(0,1), breaks=c(0,0.25, 0.50, 0.75, 1)) +
   geom_rug(sides="b", alpha=0.2, size=0.5, position="jitter")
-<<<<<<< HEAD
-
 ################################################################
-=======
-
-
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ### Model CPUE (where present) for Arrowtooth Flounder ###
 
 # Subset hauls to include only those that caught Arrowtooth:
@@ -459,10 +411,6 @@ summary(ATF.cpue.gam_select)
 ATF.cpue.gam_best = ATF.cpue.gam_full
 summary(ATF.cpue.gam_best)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Plot the partial effect of latxlon on CPUE, Arrowtooth Flounder:
 vis.gam(ATF.cpue.gam_best, c("START_LONGITUDE", "START_LATITUDE"), plot.type = "contour", type="response", contour.col="black", color="heat", xlab="Longitude", ylab="Latitude", main="Arrowtooth Flounder, Partial Effect on log-CPUE (number per hectare)", too.far=0.025, n.grid=500, xlim=c(lonmin, lonmax), ylim=c(latmin, latmax))
 maps::map('worldHires', fill=T, xlim=c(lonmin, lonmax), ylim=c(latmin, latmax), add=T, col="lightgrey")
@@ -609,11 +557,7 @@ clip2_INPFC = fortify(clip2_INPFC)
 
 setwd("~/Documents/UAF/Dissertation/GitHub/ResourcePartitioning/")
 write.csv(clip2_INPFC, "Data/clip2_INPFC.csv")
-<<<<<<< HEAD
   # clip2_INPFC = read.csv("Data/clip2_INPFC.csv")
-=======
-# clip2_INPFC = read.csv("Data/clip2_INPFC.csv")
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ################################################################### # Calculate mean depth and bottom temperature for each grid cell and survey year for use in model predictions:
 trawl_enviro = trawl
 
@@ -696,19 +640,15 @@ PHpredictionsGAM$PHpredAbun = PHpredictionsGAM$PHpa_fit * PHpredictionsGAM$PHcpu
 
 # Standardize by maximum predicted abundance (almost identical results as standardizing by mean or median, though on desired scale):
 PHpredictionsGAM$PHstdAbun = PHpredictionsGAM$PHpredAbun/max(PHpredictionsGAM$PHpredAbun)
-<<<<<<< HEAD
 ###############################################################
 ### Predict Presence-Absence, ARROWTOOTH FLOUNDER ###
 ATFpa_predictGAM = predict.gam(ATF.pa.gam_best, newdata=HaulCentEnviroData, type="response", se.fit=TRUE)
 ATFpa_predGAM = cbind(HaulCentEnviroData, ATFpa_predictGAM)
 
-=======
-
 ### Predict Presence-Absence, ARROWTOOTH FLOUNDER ###
 ATFpa_predictGAM = predict.gam(ATF.pa.gam_best, newdata=HaulCentEnviroData, type="response", se.fit=TRUE)
 ATFpa_predGAM = cbind(HaulCentEnviroData, ATFpa_predictGAM)
 
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Calculate 95% confidence intervals:
 ATFpa_pred_CIgam = within(ATFpa_predGAM, {
   lower = fit-1.96*se.fit
@@ -728,25 +668,15 @@ ATFcpue_pred_CIgam = within(ATFcpue_predGAM, {
 })
 
 colnames(ATFcpue_pred_CIgam) = c("x.UTM", "y.UTM", "id2", "EEZgrid", "YEAR", "START_LATITUDE", "START_LONGITUDE", "GEAR_DEPTH", "GEAR_TEMPERATURE", "StatArea", "Haul_Join", "ATFcpue_fit", "ATFcpue_se.fit", "ATFcpue_lowerCI", "ATFcpue_upperCI")
-<<<<<<< HEAD
 
 ATFpredictionsGAM = ATFpa_pred_CIgam %>% left_join(ATFcpue_pred_CIgam)
 
-=======
-
-ATFpredictionsGAM = ATFpa_pred_CIgam %>% left_join(ATFcpue_pred_CIgam)
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Calculate relative abundance, accounting for presence-absence:
 ATFpredictionsGAM$ATFpredAbun = ATFpredictionsGAM$ATFpa_fit * ATFpredictionsGAM$ATFcpue_fit
 
 # Standardize by maximum predicted abundance (almost identical results as standardizing by mean or median, though on desired scale):
 ATFpredictionsGAM$ATFstdAbun = ATFpredictionsGAM$ATFpredAbun/max(ATFpredictionsGAM$ATFpredAbun)
-<<<<<<< HEAD
 ###############################################################
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Merge PH and ATF predictions:
 PH_ATF_spatialGAM = PHpredictionsGAM %>% left_join(ATFpredictionsGAM)
 
@@ -806,10 +736,6 @@ INPFC_cent$START_LATITUDE[INPFC_cent$StatArea=="Yakutat"] = INPFC_cent$START_LAT
 INPFC_cent$START_LATITUDE[INPFC_cent$StatArea=="SE"] = INPFC_cent$START_LATITUDE[INPFC_cent$StatArea=="SE"] - 1.25
 INPFC_cent$START_LONGITUDE[INPFC_cent$StatArea=="SE"] = INPFC_cent$START_LONGITUDE[INPFC_cent$StatArea=="SE"] - 0.55
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Read in and prepare IPHC regulatory area layer:
 IPHC_shape = readOGR(".", "GOA_Den")
 IPHC_shape = spTransform(IPHC_shape, CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
@@ -848,14 +774,10 @@ row.names(Area4A_df) = c()
 names(Area4A_df) = c("X", "Y", "POS", "hole", "piece", "id", "PID")
 Area4A_df$PID = as.numeric(Area4A_df$PID)
 Area4A_df = clipPolys(Area4A_df, xlim=c(lonmin, lonmax), ylim=c(latmin, latmax))
-<<<<<<< HEAD
 
-setwd("~/Documents/UAF/Dissertation/GitHub/ResourcePartitioning/")
-=======
 ################################################################
 setwd("~/Documents/UAF/Dissertation/GitHub/ResourcePartitioning/")
 
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Calculate mean estimates for each grid cell (all years combined):
 stdPH = PH_ATF_spatialGAMred[,c("id2", "EEZgrid", "PHstdAbun")]
 stdAbunPH = stdPH %>%
@@ -877,11 +799,7 @@ S_Grid = as.data.frame(unique(S_Grid))
 
 # Write CSV for analyses of resource partitioning:
 write.csv(S_Grid, "Data/PH_ATF_S.csv")
-<<<<<<< HEAD
   # S_overlap = read.csv("Data/PH_ATF_S.csv")
-=======
-# S_overlap = read.csv("Data/PH_ATF_S.csv")
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 
 spatial = PH_ATF_spatialGAMred[,c("id2", "EEZgrid", "S")]
 S_overlap = spatial %>%
@@ -896,10 +814,6 @@ plot_PHstdAbun = goa.df %>% right_join(stdAbunPH)
 plot_ATFstdAbun = goa.df %>% right_join(stdAbunATF)
 plot_PH_ATF_S = goa.df %>% right_join(S_overlap)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Plot mean values by grid cell:
 IPHC_2C = data.frame(text = c("2C"))
 IPHC_3A = data.frame(text = c("3A"))
@@ -907,13 +821,10 @@ IPHC_3B = data.frame(text = c("3B"))
 IPHC_4A = data.frame(text = c("4A"))
 textStdAbun = data.frame(text = c("Std. Abundance"))
 textS = data.frame(text = c("Spatial Overlap"))
-<<<<<<< HEAD
 ###############################################################
 ### Standardized Abundance, PACIFIC HALIBUT ###
-=======
 
 ### PACIFIC HALIBUT ###
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 PHstdAbun = ggplot() +
   geom_polygon(data=plot_PHstdAbun, aes(x=long, y=lat, group=group, fill=stdAbun), col="black", lwd = 0.25) + 
   geom_polygon(data=Area2C_df, alpha=0.3, aes(x=X, y=Y, group=factor(PID)), fill=NA, show.legend=FALSE, col="cadetblue1", linetype="solid", lwd=1) +  
@@ -956,13 +867,8 @@ PHstdAbun = ggplot() +
 
 PHstdAbun
 ggsave(filename="Plots/PHstdAbun.png", plot=PHstdAbun, dpi=500, width=12, height=8, units="in")
-<<<<<<< HEAD
 ###############################################################
 ### Standardized Abundance, ARROWTOOTH FLOUNDER ###
-=======
-
-### ARROWTOOTH FLOUNDER ###
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ATFstdAbun = ggplot() +
   geom_polygon(data=plot_ATFstdAbun, aes(x=long, y=lat, group=group, fill=stdAbun), col="black", lwd = 0.25) + 
   geom_polygon(data=Area2C_df, alpha=0.3, aes(x=X, y=Y, group=factor(PID)), fill=NA, show.legend=FALSE, col="cadetblue1", linetype="solid", lwd=1) +  
@@ -1005,13 +911,8 @@ ATFstdAbun = ggplot() +
 
 ATFstdAbun
 ggsave(filename="Plots/ATFstdAbun.png", plot=ATFstdAbun, dpi=500, width=12, height=8, units="in")
-<<<<<<< HEAD
 ###############################################################
 ### Spatial Overlap, PACIFIC HALIBUT and ARROWTOOTH FLOUNDER ###
-=======
-
-### Spatial Overlap ###
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 PH_ATF_Splot = ggplot() +
   geom_polygon(data=plot_PH_ATF_S, aes(x=long, y=lat, group=group, fill=meanS), col="black", lwd=0.25) + 
   geom_polygon(data=Area2C_df, alpha=0.3, aes(x=X, y=Y, group=factor(PID)), fill=NA, show.legend=FALSE, col="cadetblue1", linetype="solid", lwd=1) +  
@@ -1053,7 +954,6 @@ PH_ATF_Splot = ggplot() +
   theme(legend.background = element_rect(fill="transparent"))
 
 PH_ATF_Splot
-<<<<<<< HEAD
 ggsave(filename="Plots/S_PH_ATF.png", plot=PH_ATF_Splot, dpi=500, width=12, height=8, units="in")
 #################################################################
 ### TEST FOR SPATIOTEMPORAL CHANGES IN SPATIAL OVERLAP ###
@@ -1110,6 +1010,4 @@ plot(SpatIPHCdf$S ~ SpatIPHCdf$YEAR.x)
 TukeyHSD(IPHCmodel_B, "IPHC.REG_AREA")
 plot(SpatIPHCdf$S ~ SpatIPHCdf$IPHC.REG_AREA)
 #################################################################
-=======
 ggsave(filename="Plots/S_PH_ATF.png", plot=PH_ATF_Splot, dpi=500, width=12, height=8, units="in")
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
