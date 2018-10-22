@@ -14,7 +14,6 @@ setwd("~/Documents/UAF/Dissertation/GitHub/ResourcePartitioning/")
 ################################################################
 ### DATA PREPARATION AND ANALYSES ###
 ################################################################
-<<<<<<< HEAD
 # Read in and join overlap data from 'SpatialAnalyses' and 'DietaryAnalyses' script files:
 spatial = S_Grid
 colnames(spatial) = c("X", "id2", "YEAR", "S", "INPFC.REP_AREA")
@@ -29,7 +28,6 @@ require(rgdal)
 require(sp)
 coordinates(overlap) = ~ START_LONGITUDE + START_LATITUDE
 
-=======
 # Read in and prepare overlap data:
 spatial = read.csv("Data/PH_ATF_S.csv")
 dietary = read.csv("Data/PH_ATF_D.csv")
@@ -54,12 +52,11 @@ require(sp)
 coordinates(overlap) = ~ START_LONGITUDE + START_LATITUDE
 INPFC_shape = readOGR(".", "GOA_Shapes")
 INPFC_shape = spTransform(INPFC_shape, CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
+
 proj4string(overlap) = proj4string(INPFC_shape)
 overlap$INPFC = over(overlap, INPFC_shape)
 
 overlap$IPHC = over(overlap, IPHC_shape)
-<<<<<<< HEAD
 overlap = as.data.frame(overlap)
 overlap_red = unique(overlap[,c(1,2,6,7,9,18)])
 ################################################################
@@ -76,7 +73,6 @@ Chir = subset(overlap_INPFC, INPFC.REP_AREA == "Chirikof")
 Kod = subset(overlap_INPFC, INPFC.REP_AREA == "Kodiak")
 Yak = subset(overlap_INPFC, INPFC.REP_AREA == "Yakutat")
 SE = subset(overlap_INPFC, INPFC.REP_AREA == "Southeastern")
-=======
 
 setwd("~/Documents/UAF/Dissertation/GitHub/ResourcePartitioning/")
 overlap = as.data.frame(overlap)
@@ -100,7 +96,6 @@ Chir = subset(overlap, INPFC.REP_AREA == "Chirikof")
 Kod = subset(overlap, INPFC.REP_AREA == "Kodiak")
 Yak = subset(overlap, INPFC.REP_AREA == "Yakutat")
 SE = subset(overlap, INPFC.REP_AREA == "Southeastern")
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 
 cor.test(Shum$S, Shum$D, alternative="two.sided", method="pearson", exact=TRUE, conf.level = 0.90)
 cor.test(Chir$S, Chir$D, alternative="two.sided", method="pearson", exact=TRUE, conf.level = 0.90)
@@ -108,20 +103,18 @@ cor.test(Kod$S, Kod$D, alternative="two.sided", method="pearson", exact=TRUE, co
 cor.test(Yak$S, Yak$D, alternative="two.sided", method="pearson", exact=TRUE, conf.level = 0.90)
 cor.test(SE$S, SE$D, alternative="two.sided", method="pearson", exact=TRUE, conf.level = 0.90)
 
-<<<<<<< HEAD
 # IPHC #
 overlap_IPHC = unique(overlap_red[,c(1:4,6)])
 IPHC4A = subset(overlap_IPHC , IPHC.REG_AREA == "4A")
 IPHC3B = subset(overlap_IPHC , IPHC.REG_AREA == "3B")
 IPHC3A = subset(overlap_IPHC , IPHC.REG_AREA == "3A")
 IPHC2C = subset(overlap_IPHC , IPHC.REG_AREA == "2C")
-=======
+
 # IPHC regulatory area coefficients:
 IPHC4A = subset(overlap, IPHC.REG_AREA == "4A")
 IPHC3B = subset(overlap, IPHC.REG_AREA == "3B")
 IPHC3A = subset(overlap, IPHC.REG_AREA == "3A")
 IPHC2C = subset(overlap, IPHC.REG_AREA == "2C")
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 
 cor.test(IPHC4A$S, IPHC4A$D, alternative="two.sided", method="pearson", exact=TRUE, conf.level = 0.90)
 cor.test(IPHC3B$S, IPHC3B$D, alternative="two.sided", method="pearson", exact=TRUE, conf.level = 0.90)
@@ -129,15 +122,22 @@ cor.test(IPHC3A$S, IPHC3A$D, alternative="two.sided", method="pearson", exact=TR
 cor.test(IPHC2C$S, IPHC2C$D, alternative="two.sided", method="pearson", exact=TRUE, conf.level = 0.90)
 ################################################################
 # Plot relationship between spatial overlap and dietary overlap:
-<<<<<<< HEAD
 overlap_long = melt(overlap, id.vars = c("YEAR", "id2", "EEZgrid", "START_LONGITUDE", "START_LATITUDE"), measure.vars = 6:7, variable.name = "OverlapIndex", value.name = "measure")
 library(ggplot2)
 require(plyr)
-=======
+
 # Convert from wide to long format for plotting:
 overlap_long = melt(overlap, id.vars = c("YEAR", "id2", "EEZgrid", "START_LONGITUDE", "START_LATITUDE"), measure.vars = 6:7, variable.name = "OverlapIndex", value.name = "measure")
 library(ggplot2)
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
+
+overlap_long = melt(overlap, id.vars = c("YEAR", "id2", "EEZgrid", "START_LONGITUDE", "START_LATITUDE"), measure.vars = 6:7, variable.name = "OverlapIndex", value.name = "measure")
+library(ggplot2)
+require(plyr)
+
+# Convert from wide to long format for plotting:
+overlap_long = melt(overlap, id.vars = c("YEAR", "id2", "EEZgrid", "START_LONGITUDE", "START_LATITUDE"), measure.vars = 6:7, variable.name = "OverlapIndex", value.name = "measure")
+library(ggplot2)
+
 overlap_summ = ddply(overlap_long, c("OverlapIndex", "YEAR"), summarise,
                      N    = length(measure),
                      mean = mean(measure),
