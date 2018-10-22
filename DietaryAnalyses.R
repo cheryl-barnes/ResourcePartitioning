@@ -15,11 +15,7 @@
 setwd("~/Documents/UAF/Dissertation/GitHub/ResourcePartitioning/")
   # source(SpatialAnalyses.R)
 ################################################################
-<<<<<<< HEAD
 ### INITIAL DATA PREPARATION ###
-=======
-### DATA PREPARATION ###
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 ################################################################
 # Read in and format food habits data:
 preyWT = get(load("Data/preyWTGOA_2013.Rdata"))
@@ -65,11 +61,7 @@ preyWTcontents = subset(preyWT_red, preyWT_red$sumWT > 0)
 
 # Compute sample sizes for proportion of prey by weight plot:
 table(preyWTcontents$StatArea, preyWTcontents$FLBin, preyWTcontents$Species_name)
-<<<<<<< HEAD
 ################################################################
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Join spatial and diet data:
 require(dplyr)
 require(stats)
@@ -108,13 +100,9 @@ levels(mycenter_INPFC_D$Species_name) = c("ATF", "PH")
 # Reshape data, wide to long (selecting only columns of interest):
 require(reshape2)
 preyWT_long = melt(mycenter_INPFC_D, id.vars = c("id2", "EEZgrid", "Yr", "StatArea", "Haul_Join", "RLONG", "RLAT", "Species_name", "PredL", "FLBin"), measure.vars = 45:153, variable.name = "PreySpecies", value.name = "WT")
-<<<<<<< HEAD
 ################################################################
 ### CALCULATE PREY DIVERSITY AND EVENNESS ###
 ################################################################
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Calculate prey diversity and evenness, by predator:
 require(vegan)
 Hsum = preyWT_long %>%
@@ -142,13 +130,9 @@ Hprime_ATF
 H_ATF$S = rowSums(H_ATF > 0)
 J_ATF = Hprime_ATF/log(ncol(H_ATF))
 J_ATF
-<<<<<<< HEAD
 ################################################################
 ### CALCULATE AND PLOT PROPORTIONS OF PREY BY WEIGHT ###
 ################################################################
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Subset diet by predator for calculating proportions of prey by weight:
 PH_all = subset(preyWT_long, Species_name=="PH")
 ATF_all = subset(preyWT_long, Species_name=="ATF")
@@ -173,13 +157,9 @@ levels(preyWTgrouped$PreySpecies) = list(Other="Algae", Pleuronectiformes="AK.Pl
 
 # Order prey items by phylogeny:
 preyWTgrouped$PreySpecies = ordered(preyWTgrouped$PreySpecies, levels = c("Porifera", "Cnidaria", "Mollusca", "Teuthida", "Octopoda", "Crustacea", "Euphausiacea", "Pandalidae", "Chionoecetes.sp", "Paguroidea", "Echinodermata", "Chondrichthyes", "Teleostei", "Clupeiformes", "Clupea.pallasii", "Salmoniformes", "Osmeriformes", "Mallotus.villosus", "Argentiniformes", "Myctophiformes", "Gadiformes", "Gadus.chalcogrammus", "Gadus.macrocephalus", "Perciformes", "Ammodytes.hexapterus", "Scorpaeniformes", "Sebastes.alutus", "Pleurogrammus.monopterygius", "Pleuronectiformes", "Atheresthes.stomias", "Offal", "Other", "Inorganic.Material"))
-<<<<<<< HEAD
-
-=======
 ################################################################
 ### CALCULATE AND PLOT PROPORTIONS OF PREY BY WEIGHT ###
 ################################################################# 
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Calculate proportions for each survey year-grid cell combination (using new prey taxa groupings - for plot only):
 PH_grouped = subset(preyWTgrouped, Species_name=="PH")
 ATF_grouped = subset(preyWTgrouped, Species_name=="ATF")
@@ -200,19 +180,15 @@ ATFprop_grouped$prop_ATF = round(ATFprop_grouped$prop_ATF, digits=5)
 
 # Merge PH and ATF proportional data:
 WTprop_grouped = merge(PHprop_grouped, ATFprop_grouped, by = c("FLBin", "StatArea", "PreySpecies"), all = TRUE)
-<<<<<<< HEAD
 
 # Order and relabel predators:
 preyWTgrouped$Species_name = ordered(preyWTgrouped$Species_name, levels = c("PH", "ATF"))
 levels(preyWTgrouped$Species_name) = c("Pacific Halibut", "Arrowtooth Flounder")
 
-=======
-
 # Order and relabel predators:
 preyWTgrouped$Species_name = ordered(preyWTgrouped$Species_name, levels = c("PH", "ATF"))
 levels(preyWTgrouped$Species_name) = c("Pacific Halibut", "Arrowtooth Flounder")
 
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Plot proportions of prey by predator, size class, and stat area:
 quartz()
 preyWTplot = ggplot(preyWTgrouped, aes(x = FLBin, y = WT, fill = PreySpecies, order = -as.numeric(PreySpecies))) + 
@@ -226,12 +202,9 @@ preyWTplot = ggplot(preyWTgrouped, aes(x = FLBin, y = WT, fill = PreySpecies, or
   theme(panel.background = element_rect(colour="black", size=1, line="solid")) +
   theme(panel.spacing.x = unit(0.5, "lines")) +
   theme(panel.spacing.y = unit(0.8, "lines")) +
-  theme(legend.title = element_text(size=11, face="bold", vjust=1.5)) +
-<<<<<<< HEAD
+  theme(legend.title = element_text(size=11, face="bold", vjust=1.5)) + 
   theme(legend.text = element_text(family="Arial", size=9.5), legend.text.align = 0) +
-=======
   theme(legend.text = element_text(family="Arial", size=10.5), legend.text.align = 0) +
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
   theme(axis.text = element_text(family="Arial", size=12)) +
   theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank()) +
@@ -239,20 +212,14 @@ preyWTplot = ggplot(preyWTgrouped, aes(x = FLBin, y = WT, fill = PreySpecies, or
   theme(axis.title.y = element_text(vjust=1.1, size=14)) +
   theme(strip.background = element_rect(colour="white",fill="white")) +
   theme(strip.text = element_text(family="Arial", size=14)) +
-<<<<<<< HEAD
   scale_fill_manual(values = c("Porifera"="lightpink3", "Cnidaria"="lavenderblush2", "Mollusca"="brown4", "Teuthida"="firebrick3", "Octopoda"="red", "Crustacea"="chocolate", "Euphausiacea"="chocolate1", "Pandalidae"="orange", "Chionoecetes.sp"="gold", "Paguroidea"="khaki1", "Echinodermata"="lemonchiffon", "Chondrichthyes"="darkolivegreen1", "Teleostei"="chartreuse2", "Clupeiformes"="forestgreen", "Clupea.pallasii"="darkgreen", "Salmoniformes"="lightcyan1", "Osmeriformes"="cadetblue1", "Mallotus.villosus"="turquoise3", "Argentiniformes"="deepskyblue3", "Myctophiformes"="deepskyblue4", "Gadiformes"="blue", "Gadus.chalcogrammus"="mediumblue", "Gadus.macrocephalus"="blue4", "Perciformes"="mediumpurple1", "Ammodytes.hexapterus"="darkviolet", "Scorpaeniformes"="purple4", "Sebastes.alutus"="black", "Pleurogrammus.monopterygius"="hotpink1", "Pleuronectiformes"="mediumvioletred", "Atheresthes.stomias"="maroon4", "Offal"="gray91", "Other"="azure4", "Inorganic.Material"="black"), name="", labels = c("Porifera", "Cnidaria", "Mollusca", "Teuthida", "Octopoda", "Crustacea", "Euphausiacea", "Pandalidae", expression(paste(italic("Chionoecetes spp."))), "Paguroidea", "Echinodermata", "Chondrichthyes", "Teleostei", "Clupeiformes", expression(paste(italic("   Clupea pallasii"))), "Salmoniformes", "Osmeriformes", expression(paste(italic("   Mallotus villosus"))), "Argentiniformes", "Myctophiformes", "Gadiformes", expression(paste(italic("   Gadus chalcogrammus"))), expression(paste(italic("   Gadus macrocephalus"))), "Perciformes", expression(paste(italic("   Ammodytes hexapterus"))), "Scorpaeniformes", expression(paste(italic("   Sebastes alutus"))), expression(paste(italic("   Pleurogrammus monopterygius"))), "Pleuronectiformes", expression(paste(italic("   Atheresthes stomias"))), "Offal", "Other", "Inorganic Material"), drop=FALSE) +
-=======
-  scale_fill_manual(values = c("Porifera"="lightpink3", "Cnidaria"="lavenderblush2", "Mollusca"="brown4", "Teuthida"="firebrick3", "Octopoda"="red", "Crustacea"="chocolate", "Euphausiacea"="chocolate1", "Pandalidae"="orange", "Chionoecetes.sp"="gold", "Paguroidea"="khaki1", "Echinodermata"="lemonchiffon", "Chondrichthyes"="darkolivegreen1", "Teleostei"="chartreuse2", "Clupeiformes"="forestgreen", "Clupea.pallasii"="darkgreen", "Salmoniformes"="lightcyan1", "Osmeriformes"="cadetblue1", "Mallotus.villosus"="turquoise3", "Argentiniformes"="deepskyblue3", "Myctophiformes"="deepskyblue4", "Gadiformes"="blue", "Gadus.chalcogrammus"="mediumblue", "Gadus.macrocephalus"="blue4", "Perciformes"="mediumpurple1", "Ammodytes.hexapterus"="darkviolet", "Scorpaeniformes"="purple4", "Sebastes.alutus"="black", "Pleurogrammus.monopterygius"="hotpink1", "Pleuronectiformes"="mediumvioletred", "Atheresthes.stomias"="maroon4", "Offal"="gray91", "Other"="azure4", "Inorganic.Material"="black"), name="Prey Taxa", labels = c("Porifera", "Cnidaria", "Mollusca", "Teuthida", "Octopoda", "Crustacea", "Euphausiacea", "Pandalidae", expression(paste(italic("Chionoecetes spp."))), "Paguroidea", "Echinodermata", "Chondrichthyes", "Teleostei", "Clupeiformes", expression(paste(italic("   Clupea pallasii"))), "Salmoniformes", "Osmeriformes", expression(paste(italic("   Mallotus villosus"))), "Argentiniformes", "Myctophiformes", "Gadiformes", expression(paste(italic("   Gadus chalcogrammus"))), expression(paste(italic("   Gadus macrocephalus"))), "Perciformes", expression(paste(italic("   Ammodytes hexapterus"))), "Scorpaeniformes", expression(paste(italic("   Sebastes alutus"))), expression(paste(italic("   Pleurogrammus monopterygius"))), "Pleuronectiformes", expression(paste(italic("   Atheresthes stomias"))), "Offal", "Other", "Inorganic Material"), drop=FALSE) +
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
+scale_fill_manual(values = c("Porifera"="lightpink3", "Cnidaria"="lavenderblush2", "Mollusca"="brown4", "Teuthida"="firebrick3", "Octopoda"="red", "Crustacea"="chocolate", "Euphausiacea"="chocolate1", "Pandalidae"="orange", "Chionoecetes.sp"="gold", "Paguroidea"="khaki1", "Echinodermata"="lemonchiffon", "Chondrichthyes"="darkolivegreen1", "Teleostei"="chartreuse2", "Clupeiformes"="forestgreen", "Clupea.pallasii"="darkgreen", "Salmoniformes"="lightcyan1", "Osmeriformes"="cadetblue1", "Mallotus.villosus"="turquoise3", "Argentiniformes"="deepskyblue3", "Myctophiformes"="deepskyblue4", "Gadiformes"="blue", "Gadus.chalcogrammus"="mediumblue", "Gadus.macrocephalus"="blue4", "Perciformes"="mediumpurple1", "Ammodytes.hexapterus"="darkviolet", "Scorpaeniformes"="purple4", "Sebastes.alutus"="black", "Pleurogrammus.monopterygius"="hotpink1", "Pleuronectiformes"="mediumvioletred", "Atheresthes.stomias"="maroon4", "Offal"="gray91", "Other"="azure4", "Inorganic.Material"="black"), name="Prey Taxa", labels = c("Porifera", "Cnidaria", "Mollusca", "Teuthida", "Octopoda", "Crustacea", "Euphausiacea", "Pandalidae", expression(paste(italic("Chionoecetes spp."))), "Paguroidea", "Echinodermata", "Chondrichthyes", "Teleostei", "Clupeiformes", expression(paste(italic("   Clupea pallasii"))), "Salmoniformes", "Osmeriformes", expression(paste(italic("   Mallotus villosus"))), "Argentiniformes", "Myctophiformes", "Gadiformes", expression(paste(italic("   Gadus chalcogrammus"))), expression(paste(italic("   Gadus macrocephalus"))), "Perciformes", expression(paste(italic("   Ammodytes hexapterus"))), "Scorpaeniformes", expression(paste(italic("   Sebastes alutus"))), expression(paste(italic("   Pleurogrammus monopterygius"))), "Pleuronectiformes", expression(paste(italic("   Atheresthes stomias"))), "Offal", "Other", "Inorganic Material"), drop=FALSE) +
   labs(x="Fork Length (cm)", y="Proportion by Weight") +
   scale_y_continuous(breaks = c(0, 0.5, 1.0), expand = c(0, 0.01)) +
   scale_x_discrete(expand = c(0.03, 0.03)) +
   guides(fill=guide_legend(nrow=5)) +
-<<<<<<< HEAD
   theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(0,0,0,0), legend.background = element_rect(fill="transparent"))
-=======
   theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(-20,-10,0,-20), legend.background = element_rect(fill="transparent"))
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 preyWTplot
 
 ggsave(filename="Plots/preyWTplot.png", plot=preyWTplot, dpi=500, width=11.5, height=7, units="in")
@@ -268,11 +235,7 @@ Nfish_wide[is.na(Nfish_wide)] = 0
 Nfish_sub = subset(Nfish_wide, ATF >= 3)
 Nfish_sub = subset(Nfish_sub, PH >= 3)
 preyWT_longGrid = Nfish_sub %>% left_join(preyWT_long)
-<<<<<<< HEAD
 ################################################################
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Summarize diet data (ungrouped prey taxa for overlap calculations):
 
 # PACIFIC HALIBUT #
@@ -313,11 +276,7 @@ D_Grid = D_Grid[ , c(1:3, 5)]
 
 # Write CSV for analyses of resource partitioning:
 write.csv(D_Grid, "Data/PH_ATF_D.csv")
-<<<<<<< HEAD
   # D_overlap = read.csv("Data/PH_ATF_D.csv")
-=======
-# D_overlap = read.csv("Data/PH_ATF_D.csv")
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 
 # Summarize by grid cell (all years combined):
 D_Grid_mean = D_Grid %>%
@@ -330,11 +289,7 @@ D_overlap = unique(D_Grid_mean)
 goa.df = fortify(clip2_INPFC, region='id')
 colnames(goa.df)[colnames(goa.df) == "id"] = "EEZgrid"
 plot_PH_ATF_D = goa.df %>% right_join(D_overlap)
-<<<<<<< HEAD
 ################################################################
-=======
-
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
 # Plot mean dietary overlap (all years combined):
 
 ### Dietary Overlap ###
@@ -381,7 +336,6 @@ PH_ATF_Dplot = ggplot() +
   theme(legend.background = element_rect(fill="transparent"))
 
 PH_ATF_Dplot
-<<<<<<< HEAD
 ggsave(filename="Plots/D_PH_ATF.png", plot=PH_ATF_Dplot, dpi=500, width=12, height=8, units="in")
 #################################################################
 ### TEST FOR SPATIOTEMPORAL CHANGES IN DIETARY OVERLAP ###
@@ -432,6 +386,4 @@ summary(IPHCmodel_B)
 TukeyHSD(IPHCmodel_B, "YEAR")
 plot(DietIPHCdf$D ~ DietIPHCdf$Yr)
 #################################################################
-=======
 ggsave(filename="Plots/D_PH_ATF.png", plot=PH_ATF_Dplot, dpi=500, width=12, height=8, units="in")
->>>>>>> 9045cd7d9ffed04e6da6d0377a1096b1c1e66321
