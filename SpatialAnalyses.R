@@ -143,12 +143,6 @@ require(visreg)
 require(ggplot2)
 require(PBSmapping)
 
-# Set coordinate boundaries for plotting:
-lonmin = -172
-lonmax = -130
-latmin = 52
-latmax = 62
-
 # Ensure that the same tows are included in each model by removing those with incomplete environmental data (i.e., rows with missing depths or bottom temperatures):
 trawl_comp = subset(trawl_wide_30_69, !is.na(GEAR_DEPTH))
 trawl_comp = subset(trawl_comp, !is.na(GEAR_TEMPERATURE))
@@ -614,7 +608,7 @@ PHpa_pred_CIgam = within(PHpa_predGAM, {
   lower = fit-1.96*se.fit
   upper = fit+1.96*se.fit
 })
-colnames(PHpa_pred_CIgam) = c("x.UTM", "y.UTM", "id2", "EEZgrid", "YEAR", "START_LATITUDE", "START_LONGITUDE", "GEAR_DEPTH", "GEAR_TEMPERATURE", "StatArea", "Haul_Join", "PHpa_fit", "PHpa_se.fit", "PHpa_lowerCI", "PHpa_upperCI")
+colnames(PHpa_pred_CIgam) = c("x.UTM", "y.UTM", "id2", "EEZgrid", "YEAR", "START_LATITUDE", "START_LONGITUDE", "GEAR_DEPTH", "GEAR_TEMPERATURE", "StatArea", "Haul_Join", "PHpa_fit", "PHpa_se.fit", "PHpa_upperCI", "PHpa_lowerCI")
 
 ### CPUE, PACIFIC HALIBUT ###
 PHcpue_predictGAM = predict.gam(PH.cpue.gam_best, newdata=HaulCentEnviroData, type="response", se.fit=TRUE)
@@ -625,7 +619,7 @@ PHcpue_pred_CIgam = within(PHcpue_predGAM, {
   lower = fit-1.96*se.fit
   upper = fit+1.96*se.fit
 })
-colnames(PHcpue_pred_CIgam) = c("x.UTM", "y.UTM", "id2", "EEZgrid", "YEAR", "START_LATITUDE", "START_LONGITUDE", "GEAR_DEPTH", "GEAR_TEMPERATURE", "StatArea", "Haul_Join", "PHcpue_fit", "PHcpue_se.fit", "PHcpue_lowerCI", "PHcpue_upperCI")
+colnames(PHcpue_pred_CIgam) = c("x.UTM", "y.UTM", "id2", "EEZgrid", "YEAR", "START_LATITUDE", "START_LONGITUDE", "GEAR_DEPTH", "GEAR_TEMPERATURE", "StatArea", "Haul_Join", "PHcpue_fit", "PHcpue_se.fit", "PHcpue_upperCI", "PHcpue_lowerCI")
 
 PHpredictionsGAM = PHpa_pred_CIgam %>% left_join(PHcpue_pred_CIgam)
 
