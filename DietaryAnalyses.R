@@ -164,34 +164,33 @@ preyWTgrouped$PreySpecies = ordered(preyWTgrouped$PreySpecies, levels = c("Porif
 PH_grouped = subset(preyWTgrouped, Species_name=="PH")
 ATF_grouped = subset(preyWTgrouped, Species_name=="ATF")
 
+detach(package:plyr)
 PHprop_grouped = PH_grouped %>%
   group_by(FLBin, StatArea, PreySpecies) %>% 
   summarize(n = sum(WT)) %>%
   mutate(proportion = n / sum(n)) 
-colnames(PHprop_grouped) = c("FLBin", "StatArea", "PreySpecies", "n_PH", "prop_PH")
-PHprop_grouped$prop_PH = round(PHprop_grouped$prop_PH, digits=5)
+colnames(PHprop_grouped) = c("FLBin", "StatArea", "PreySpecies", "n", "prop")
+PHprop_grouped$prop = round(PHprop_grouped$prop, digits=5)
+PHprop_grouped$Species_name = "PH"
 
 ATFprop_grouped = ATF_grouped %>%
   group_by(FLBin, StatArea, PreySpecies) %>% 
   summarize(n = sum(WT)) %>%
   mutate(proportion = n / sum(n))
-colnames(ATFprop_grouped) = c("FLBin", "StatArea", "PreySpecies", "n_ATF", "prop_ATF")
-ATFprop_grouped$prop_ATF = round(ATFprop_grouped$prop_ATF, digits=5)
+colnames(ATFprop_grouped) = c("FLBin", "StatArea", "PreySpecies", "n", "prop")
+ATFprop_grouped$prop = round(ATFprop_grouped$prop, digits=5)
+ATFprop_grouped$Species_name = "ATF"
 
 # Merge PH and ATF proportional data:
-WTprop_grouped = merge(PHprop_grouped, ATFprop_grouped, by = c("FLBin", "StatArea", "PreySpecies"), all = TRUE)
+WTprop_grouped = rbind(PHprop_grouped, ATFprop_grouped)
 
 # Order and relabel predators:
-preyWTgrouped$Species_name = ordered(preyWTgrouped$Species_name, levels = c("PH", "ATF"))
-levels(preyWTgrouped$Species_name) = c("Pacific Halibut", "Arrowtooth Flounder")
-
-# Order and relabel predators:
-preyWTgrouped$Species_name = ordered(preyWTgrouped$Species_name, levels = c("PH", "ATF"))
-levels(preyWTgrouped$Species_name) = c("Pacific Halibut", "Arrowtooth Flounder")
+WTprop_grouped$Species_name = ordered(WTprop_grouped$Species_name, levels = c("PH", "ATF"))
+levels(WTprop_grouped$Species_name) = c("Pacific Halibut", "Arrowtooth Flounder")
 
 # Plot proportions of prey by predator, size class, and stat area:
 quartz()
-preyWTplot = ggplot(preyWTgrouped, aes(x = FLBin, y = WT, fill = PreySpecies, order = -as.numeric(PreySpecies))) + 
+preyWTplot = ggplot(WTprop_grouped, aes(x = FLBin, y = prop, fill = PreySpecies, order = -as.numeric(PreySpecies))) + 
   geom_bar(position = "fill", stat = "identity") +
   facet_grid(Species_name ~ StatArea) + 
   theme_bw() +
@@ -204,7 +203,6 @@ preyWTplot = ggplot(preyWTgrouped, aes(x = FLBin, y = WT, fill = PreySpecies, or
   theme(panel.spacing.y = unit(0.8, "lines")) +
   theme(legend.title = element_text(size=11, face="bold", vjust=1.5)) + 
   theme(legend.text = element_text(family="Arial", size=9.5), legend.text.align = 0) +
-  theme(legend.text = element_text(family="Arial", size=10.5), legend.text.align = 0) +
   theme(axis.text = element_text(family="Arial", size=12)) +
   theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) +
   theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank()) +
@@ -218,7 +216,7 @@ scale_fill_manual(values = c("Porifera"="lightpink3", "Cnidaria"="lavenderblush2
   scale_y_continuous(breaks = c(0, 0.5, 1.0), expand = c(0, 0.01)) +
   scale_x_discrete(expand = c(0.03, 0.03)) +
   guides(fill=guide_legend(nrow=5)) +
-  theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(0,0,0,0), legend.background = element_rect(fill="transparent"))
+  theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(0,0,0,0), legend.background = element_rect(fill="transparent")) +
   theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(-20,-10,0,-20), legend.background = element_rect(fill="transparent"))
 preyWTplot
 
@@ -289,6 +287,7 @@ D_overlap = unique(D_Grid_mean)
 goa.df = fortify(clip2_INPFC, region='id')
 colnames(goa.df)[colnames(goa.df) == "id"] = "EEZgrid"
 plot_PH_ATF_D = goa.df %>% right_join(D_overlap)
+plot_PH_ATF_Dyr = goa.df %>% right_join(D_Grid)
 ################################################################
 # Plot mean dietary overlap (all years combined):
 
@@ -337,6 +336,51 @@ PH_ATF_Dplot = ggplot() +
 
 PH_ATF_Dplot
 ggsave(filename="Plots/D_PH_ATF.png", plot=PH_ATF_Dplot, dpi=500, width=12, height=8, units="in")
+
+# Plot dietary overlap by grid cell and year (for loop):
+for(var in unique(plot_PH_ATF_Dyr$YEAR)) {
+  p = ggplot() +
+    geom_polygon(data=plot_PH_ATF_Dyr[plot_PH_ATF_Dyr$YEAR==var,], aes(x=long, y=lat, group=group, fill=D), col="black", lwd=0.25) + 
+    geom_polygon(data=Area2C_df, alpha=0.3, aes(x=X, y=Y, group=factor(PID)), fill=NA, show.legend=FALSE, col="cadetblue1", linetype="solid", lwd=1) +  
+    geom_polygon(data=Area3A_df, alpha=0.3, aes(x=X, y=Y, group=factor(PID)), fill=NA, show.legend=FALSE, col="deepskyblue2", linetype="solid", lwd=1) +  
+    geom_polygon(data=Area3B_df, alpha=0.3, aes(x=X, y=Y, group=factor(PID)), fill=NA, show.legend=FALSE, col="blue", linetype="solid", lwd=1) +  
+    geom_polygon(data=Area4A_df, alpha=0.3, aes(x=X, y=Y, group=factor(PID)), fill=NA, show.legend=FALSE, col="midnightblue", linetype="solid", lwd=1) +  
+    scale_fill_distiller(palette="Spectral", name="", limits=c(0,1), breaks=c(0.00,0.25,0.50,0.75,1.00)) +
+    geom_polygon(data=INPFC_plot, aes(x=X, y=Y, group=factor(PID)), fill=NA, col="black", linetype="solid", lwd=0.25) +
+    geom_polygon(data=world2, aes(x=X, y=Y, group=factor(PID)), fill="lightgrey", col="black", lwd=0.25) +
+    geom_polygon(data=Canada, aes(x=X, y=Y, group=factor(PID)), fill="gray91", col="black", lwd=0.25) +
+    geom_text(data=textD, aes(label=text, x=-132.48, y=61.65, size=12), show.legend=FALSE) +
+    geom_text(data=INPFC_cent, aes(group=StatArea, label=StatArea, x=START_LONGITUDE, y=START_LATITUDE, size=12), show.legend = FALSE) +
+    geom_text(data=IPHC_2C, aes(label=text, x=-134.84, y=56.06, size=12), col="cadetblue1", fontface="bold", show.legend = FALSE) +
+    geom_text(data=IPHC_3A, aes(label=text, x=-145.40, y=59.9, size=12), col="deepskyblue3", fontface="bold", show.legend = FALSE) +
+    geom_text(data=IPHC_3B, aes(label=text, x=-157.39, y=55.65, size=12), col="blue", fontface="bold", show.legend = FALSE) +
+    geom_text(data=IPHC_4A, aes(label=text, x=-167.75, y=53.05, size=12), col="midnightblue", fontface="bold", show.legend = FALSE) +
+    theme_bw() +
+    ggtitle("Dietary Overlap between Pacific Halibut and Arrowtooth Flounder") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(panel.background = element_rect(fill="white", colour="black", size=1, line="solid")) +
+    theme(legend.position = c(0.957, 0.830)) +
+    theme(plot.title = element_text(hjust = 0.5, size=14)) +
+    theme(legend.title = element_blank()) +
+    theme(legend.text = element_text(family="Arial", size=12), legend.text.align = 1) +
+    theme(legend.background = element_rect(fill="transparent")) + 
+    theme(legend.key = element_blank()) +
+    theme(legend.key.width = unit(6.0, "mm")) +
+    theme(legend.key.height = unit(8.0, "mm")) +
+    theme(legend.spacing.x = unit(2.0, "mm")) +
+    theme(axis.text.y = element_text(family="Arial", size=12)) +
+    theme(axis.text.x = element_text(family="Arial", size=12)) +
+    theme(panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) +
+    theme(panel.grid.major.x = element_blank(), panel.grid.minor.x = element_blank()) +
+    theme(axis.title.x = element_text(hjust=0.53, size=12)) +
+    theme(axis.title.y = element_text(hjust=0.46, size=12)) +
+    labs(x="Longitude", y="Latitude") +
+    scale_x_continuous(limits = c(lonmin, lonmax), expand = c(0,0)) +
+    scale_y_continuous(limits = c(latmin, latmax), expand = c(0,0), labels = function(x) round(as.numeric(x), digits=0)) +
+    theme(legend.background = element_rect(fill="transparent"))
+  
+  ggsave(p, filename=paste("Plots/D_PH_ATF_", var, ".png", sep=""), dpi=500, width=12, height=8, units="in")
+}
 #################################################################
 ### TEST FOR SPATIOTEMPORAL CHANGES IN DIETARY OVERLAP ###
 #################################################################
