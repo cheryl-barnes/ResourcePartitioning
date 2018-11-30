@@ -60,6 +60,7 @@ preyWT_red = preyWT_red[ , c(1:63, 65:152)]
 preyWTcontents = subset(preyWT_red, preyWT_red$sumWT > 0)
 
 # Compute sample sizes for proportion of prey by weight plot:
+table(preyWTcontents$Species_name)
 table(preyWTcontents$StatArea, preyWTcontents$FLBin, preyWTcontents$Species_name)
 ################################################################
 # Join spatial and diet data:
@@ -211,13 +212,12 @@ preyWTplot = ggplot(WTprop_grouped, aes(x = FLBin, y = prop, fill = PreySpecies,
   theme(strip.background = element_rect(colour="white",fill="white")) +
   theme(strip.text = element_text(family="Arial", size=14)) +
   scale_fill_manual(values = c("Porifera"="lightpink3", "Cnidaria"="lavenderblush2", "Mollusca"="brown4", "Teuthida"="firebrick3", "Octopoda"="red", "Crustacea"="chocolate", "Euphausiacea"="chocolate1", "Pandalidae"="orange", "Chionoecetes.sp"="gold", "Paguroidea"="khaki1", "Echinodermata"="lemonchiffon", "Chondrichthyes"="darkolivegreen1", "Teleostei"="chartreuse2", "Clupeiformes"="forestgreen", "Clupea.pallasii"="darkgreen", "Salmoniformes"="lightcyan1", "Osmeriformes"="cadetblue1", "Mallotus.villosus"="turquoise3", "Argentiniformes"="deepskyblue3", "Myctophiformes"="deepskyblue4", "Gadiformes"="blue", "Gadus.chalcogrammus"="mediumblue", "Gadus.macrocephalus"="blue4", "Perciformes"="mediumpurple1", "Ammodytes.hexapterus"="darkviolet", "Scorpaeniformes"="purple4", "Sebastes.alutus"="black", "Pleurogrammus.monopterygius"="hotpink1", "Pleuronectiformes"="mediumvioletred", "Atheresthes.stomias"="maroon4", "Offal"="gray91", "Other"="azure4", "Inorganic.Material"="black"), name="", labels = c("Porifera", "Cnidaria", "Mollusca", "Teuthida", "Octopoda", "Crustacea", "Euphausiacea", "Pandalidae", expression(paste(italic("Chionoecetes spp."))), "Paguroidea", "Echinodermata", "Chondrichthyes", "Teleostei", "Clupeiformes", expression(paste(italic("   Clupea pallasii"))), "Salmoniformes", "Osmeriformes", expression(paste(italic("   Mallotus villosus"))), "Argentiniformes", "Myctophiformes", "Gadiformes", expression(paste(italic("   Gadus chalcogrammus"))), expression(paste(italic("   Gadus macrocephalus"))), "Perciformes", expression(paste(italic("   Ammodytes hexapterus"))), "Scorpaeniformes", expression(paste(italic("   Sebastes alutus"))), expression(paste(italic("   Pleurogrammus monopterygius"))), "Pleuronectiformes", expression(paste(italic("   Atheresthes stomias"))), "Offal", "Other", "Inorganic Material"), drop=FALSE) +
-scale_fill_manual(values = c("Porifera"="lightpink3", "Cnidaria"="lavenderblush2", "Mollusca"="brown4", "Teuthida"="firebrick3", "Octopoda"="red", "Crustacea"="chocolate", "Euphausiacea"="chocolate1", "Pandalidae"="orange", "Chionoecetes.sp"="gold", "Paguroidea"="khaki1", "Echinodermata"="lemonchiffon", "Chondrichthyes"="darkolivegreen1", "Teleostei"="chartreuse2", "Clupeiformes"="forestgreen", "Clupea.pallasii"="darkgreen", "Salmoniformes"="lightcyan1", "Osmeriformes"="cadetblue1", "Mallotus.villosus"="turquoise3", "Argentiniformes"="deepskyblue3", "Myctophiformes"="deepskyblue4", "Gadiformes"="blue", "Gadus.chalcogrammus"="mediumblue", "Gadus.macrocephalus"="blue4", "Perciformes"="mediumpurple1", "Ammodytes.hexapterus"="darkviolet", "Scorpaeniformes"="purple4", "Sebastes.alutus"="black", "Pleurogrammus.monopterygius"="hotpink1", "Pleuronectiformes"="mediumvioletred", "Atheresthes.stomias"="maroon4", "Offal"="gray91", "Other"="azure4", "Inorganic.Material"="black"), name="Prey Taxa", labels = c("Porifera", "Cnidaria", "Mollusca", "Teuthida", "Octopoda", "Crustacea", "Euphausiacea", "Pandalidae", expression(paste(italic("Chionoecetes spp."))), "Paguroidea", "Echinodermata", "Chondrichthyes", "Teleostei", "Clupeiformes", expression(paste(italic("   Clupea pallasii"))), "Salmoniformes", "Osmeriformes", expression(paste(italic("   Mallotus villosus"))), "Argentiniformes", "Myctophiformes", "Gadiformes", expression(paste(italic("   Gadus chalcogrammus"))), expression(paste(italic("   Gadus macrocephalus"))), "Perciformes", expression(paste(italic("   Ammodytes hexapterus"))), "Scorpaeniformes", expression(paste(italic("   Sebastes alutus"))), expression(paste(italic("   Pleurogrammus monopterygius"))), "Pleuronectiformes", expression(paste(italic("   Atheresthes stomias"))), "Offal", "Other", "Inorganic Material"), drop=FALSE) +
   labs(x="Fork Length (cm)", y="Proportion by Weight") +
   scale_y_continuous(breaks = c(0, 0.5, 1.0), expand = c(0, 0.01)) +
   scale_x_discrete(expand = c(0.03, 0.03)) +
   guides(fill=guide_legend(nrow=5)) +
   theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(0,0,0,0), legend.background = element_rect(fill="transparent")) +
-  theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(-20,-10,0,-20), legend.background = element_rect(fill="transparent"))
+  theme(legend.direction = "horizontal", legend.position = "bottom", legend.box.margin = margin(-5,-10,0,-20), legend.background = element_rect(fill="transparent"))
 preyWTplot
 
 ggsave(filename="Plots/preyWTplot.png", plot=preyWTplot, dpi=500, width=11.5, height=7, units="in")
@@ -431,3 +431,42 @@ TukeyHSD(IPHCmodel_B, "YEAR")
 plot(DietIPHCdf$D ~ DietIPHCdf$Yr)
 #################################################################
 ggsave(filename="Plots/D_PH_ATF.png", plot=PH_ATF_Dplot, dpi=500, width=12, height=8, units="in")
+
+
+
+#################################################################
+# Species Accumulation Curves (Supplemental):
+#################################################################
+# Remove 'Species' column from data frames:
+SpecAccumData = preyWTcontents[,c(6,39:147)]
+PH = subset(SpecAccumData, Species_name == "PACIFIC HALIBUT")
+PH_Data = ifelse(PH[2:110] > 0, 1, 0)
+ATF = subset(SpecAccumData, Species_name == "ARROWTOOTH FLOUNDR")
+ATF_Data = ifelse(ATF[2:110] > 0, 1, 0)
+
+# Species accumulation curves:
+curve.PH = specaccum(PH_Data, method="rarefaction")
+curve.ATF = specaccum(ATF_Data, method="rarefaction")
+
+pdf("Plots/SpecAccumCurves.pdf",width=6.5,height=4.25)
+par(mfrow=c(1, 1), mar=c(2,2,3,1), omi=c(0.4,0.4,0,0))
+
+# Plot PH curve with CI:
+plot(curve.PH, 
+     main="",
+     ci.type = "polygon", ci.col = rgb(1, 158/255, 115/255, 0.5), ci.lty = 0, 
+     col = "red",
+     xlab = "", ylab="", xlim = c(0,3000))
+
+# Add ATF curve and CIT to the same plot:
+plot(curve.ATF, 
+     ci.type = "polygon", ci.col = rgb(86/255, 180/255, 233/255, 0.5), ci.lty = 0, 
+     col = "blue", 
+     xlim = c(0,3000), add = TRUE)
+
+mtext("Cumulative Prey Taxa", side=2, line=0.5, outer=T)
+mtext("No. Stomachs Sampled", side=1, line=-0.0, outer=T)
+legend("bottomright", inset=0.005, legend=c("PH", "ATF"), bty="n", lwd=1, col=c("red", "blue"), lty=1, x.intersp=0.55, y.intersp=1, cex=0.75, seg.len=1.5)
+
+dev.off()
+################################################################
