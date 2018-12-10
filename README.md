@@ -16,7 +16,7 @@ The 'SpatialAnalyses' script file includes the code necessary to construct a del
 We used generalized additive models to quantify and predict the probability of occurrence and relative abundance of Pacific Halibut and Arrowtooth Flounder across a uniform grid spanning the study area. We multiplied probabilities of occurrence and relative abundances to estimate overall abundance in each survey year-grid cell combination. We then multiplied standardized abundances of each species to estimate spatial overlap in each combination of survey year and grid cell. 
 
 # Dietary Overlap
-The 'DietaryAnalyses' script file includes the code necessary to calculate species-specific proportions of prey by weight in each survey year and grid cell. We then used proportions of prey by weight to calculate Schoener's index of dietary overlap.
+The 'DietaryAnalyses' script file includes the code necessary to calculate species-specific proportions of prey by weight in each survey year and grid cell. We used proportions of prey by weight to calculate Schoener's index of dietary overlap.
 
 # Resource Partitioning
 The 'ResourcePartitioningAnalyses' script file combines spatial overlap and dietary overlap to quantify the correlation between the two measures and thus the degree of resource partitioning between Pacific Halibut and Arrowtooth Flounder in the Gulf of Alaska. Descriptions of resource partitioning can be found in Schoener (1974) and Ross (1986).
