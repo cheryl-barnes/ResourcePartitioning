@@ -18,11 +18,6 @@ The 'DietaryAnalyses' script file includes the code necessary to calculate speci
 # Resource Partitioning
 The 'ResourcePartitioningAnalyses' script file combines spatial overlap and dietary overlap to quantify the correlation between the two measures and thus the degree of resource partitioning between Pacific Halibut and Arrowtooth Flounder in the Gulf of Alaska. Descriptions of resource partitioning can be found in Schoener (1974) and Ross (1986).
 
-# CoAuthors
-Anne H. Beaudreau - College of Fisheries and Ocean Sciences | University of Alaska Fairbanks <br>
-Mary E. Hunsicker - Fish Ecology Division, Northwest Fisheries Science Center | National Marine Fisheries Service (NOAA) <br>
-Lorenzo Ciannelli - College of Earth, Ocean, and Atmospheric Sciences | Oregon State University
-
 # References
 Chipps SR, Garvey JE. Assessment of diets and feeding patterns. In: Analysis and interpretation of freshwater fisheries data. Guy CS, Brown ML, editors. Bethesda: American Fisheries Society; 2007. pp. 473–514. <br>
 
