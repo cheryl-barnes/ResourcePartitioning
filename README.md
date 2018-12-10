@@ -1,7 +1,7 @@
 # Overview
 These files detail analyses used to estimate the degree of resource partitioning (as a proxy for the potential for competition) between Pacific Halibut and Arrowtooth Flounder (30 to 69 cm fork length) in the Gulf of Alaska. 
 
-<b>Citation</b>: Barnes, C.L., A.H. Beaudreau, M.E. Hunsicker, and L. Ciannelli. In Press. Assessing the potential for competition between Pacific Halibut (<i>Hippoglossus stenolepis</i>) and Arrowtooth Flounder (<i>Atheresthes stomias</i>) in the Gulf of Alaska. PLOS ONE. Forth-coming.
+<b>Code Citation</b>: Barnes, C.L., A.H. Beaudreau, M.E. Hunsicker, and L. Ciannelli. In Press. Assessing the potential for competition between Pacific Halibut (<i>Hippoglossus stenolepis</i>) and Arrowtooth Flounder (<i>Atheresthes stomias</i>) in the Gulf of Alaska. PLOS ONE. Forth-coming.
 
 # Data Sources
 We used standardized survey data procured from the Alaska Fisheries Science Center (National Marine Fisheries Service, National Oceanic and Atmospheric Association [NOAA]). Bottom trawl survey data (1990 to 2017) were collected by the Resource Assessment and Conservation Engineering (RACE) Division and are publicly accessible here: https://www.afsc.noaa.gov/RACE/groundfish/survey_data/data.htm.
