@@ -1,4 +1,4 @@
-<b> Citation</b>: Barnes, C.L., A.H. Beaudreau, M.E. Hunsicker, and L. Ciannelli. 2018. Assessing the potential for competition between Pacific Halibut (<i>Hippoglossus stenolepis</i>) and Arrowtooth Flounder (<i>Atheresthes stomias</i>) in the Gulf of Alaska. PLoS ONE. 13(12). https://doi.org/10.1371/journal.pone.0209402
+<b> Citation</b>: Barnes, CL, AH Beaudreau, ME Hunsicker, and L Ciannelli. 2018. Assessing the potential for competition between Pacific Halibut (<i>Hippoglossus stenolepis</i>) and Arrowtooth Flounder (<i>Atheresthes stomias</i>) in the Gulf of Alaska. PLoS ONE. 13(12). https://doi.org/10.1371/journal.pone.0209402
 
 # Overview
 These files detail analyses used to estimate the degree of resource partitioning (as a proxy for the potential for competition) between Pacific Halibut and Arrowtooth Flounder (30 to 69 cm fork length) in the Gulf of Alaska. 
