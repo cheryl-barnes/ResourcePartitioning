@@ -4,7 +4,7 @@
 These files detail analyses used to estimate the degree of resource partitioning (as a proxy for the potential for competition) between Pacific Halibut and Arrowtooth Flounder (30 to 69 cm fork length) in the Gulf of Alaska. 
 
 # Data Sources
-We used standardized survey data procured from the Alaska Fisheries Science Center (National Marine Fisheries Service, National Oceanic and Atmospheric Association [NOAA]). All the data necessary to complete the following analyses can be found in the 'Data' folder. See von Szalay and Raring (2016) and Livingston et al. (2017) for data collection methods.
+We used standardized survey data procured from the Alaska Fisheries Science Center (National Marine Fisheries Service, National Oceanic and Atmospheric Association [NOAA]). All necessary data can be found in the 'Data' folder of this repository. See von Szalay and Raring (2016) and Livingston et al. (2017) for data collection methods.
 
 Bottom trawl survey data (1990 to 2017) were collected by the Resource Assessment and Conservation Engineering (RACE) Division and are publicly accessible here: https://www.afsc.noaa.gov/RACE/groundfish/survey_data/data.htm.
 
